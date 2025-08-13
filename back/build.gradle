@@ -1,0 +1,81 @@
+// 프로젝트에 사용할 플로그인들 정의
+plugins {
+	id 'java'												// Java 프로젝트로 설정
+	id 'org.springframework.boot' version '3.5.0'			// Spring Boot 기능 사용
+	id 'io.spring.dependency-management' version '1.1.7'	// 의존성 자동 버전 관리
+}
+
+//프로젝트 그룹명 및 버전 설정
+group = 'kr.co.dxcom.madeinsihin'
+version = '0.1'
+
+
+//자바 버전 설정 (JDK 17 사용)
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+// Lombok 등의 Annotation Processor 설정
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor						// 컴파일 시 annotation 처리용 설정
+	}
+}
+
+// 의존성 저장소 (라이브러리 다운로드 출처)
+repositories {
+	mavenCentral()											// Maven 중앙 저장소 사용
+}
+
+// 실제 사용하는 라이브러리 의존성들
+dependencies {
+	// 웹 기능 관련 스타터 (REST API 서버 개발용)
+	implementation 'org.springframework.boot:spring-boot-starter-web'			// Spring MVC, JSON 처리, 내장 Tomcat 등 포함
+
+	// 데이터베이스 접근 (JPA/JDBC)
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'		// ORM(JPA) + Hibernate
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'		// Spring JDBC Template
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'			// 일반 JDBC 사용 시 필요
+
+	// 입력값 검증 (ex: @Valid, @NotNull 등)
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// 이메일 발송 기능 (ex: 임시 비밀번호 발송 등)
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// 보안: 인증/인가 및 로그인 처리
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'// Sptring Security 기본 인증 처리
+
+	// Lombok: Getter, Setter, 생성자 자동 생성
+	compileOnly 'org.projectlombok:lombok'					 // 컴파일 시만 필요한 Lombok
+	annotationProcessor 'org.projectlombok:lombok'			 // Annotation 코드 자동 생성 처리기
+
+	//테스트 프레임워크
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'		// 단위 테스트, MockMvc 등 포함
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'				// JUnit 플랫폼 실행기
+
+	// 개발 중 편의 기능 (자동 리빌드 등)
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	//MySQL 데이터 베이스 드라이버 (DB 연결용)
+	runtimeOnly 'com.mysql:mysql-connector-j'
+}
+
+
+// 테스트 플랫폼 설정 (JUnit 5 기반 테스트 실행)
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// 컴파일 시 경고 메시지 출력 설정
+tasks.withType(JavaCompile) {
+	options.compilerArgs += "-Xlint:deprecation"
+}
+
+// 빌드 결과물 JAR 파일명 지정
+bootJar {
+	archiveFileName = 'checktalk-0.3.jar'  // 빌드 결과물 이름 (ex: 배포 시 사용)
+}

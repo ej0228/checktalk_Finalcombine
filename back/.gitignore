@@ -1,0 +1,63 @@
+# ===================================
+# 📦 Java / Spring Boot Build Files
+# ===================================
+*.class
+*.jar
+*.war
+*.ear
+
+/build/
+/target/
+/bin/
+/out/
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Maven
+dependency-reduced-pom.xml
+release.properties
+
+# ===================================
+# 💾 환경 설정 / 민감 정보
+# ===================================
+*.log
+*.env
+application-*.properties
+
+# ===================================
+# 🧪 IDE / 툴 설정
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# Eclipse / STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# macOS / Windows 시스템 파일
+.DS_Store
+Thumbs.db
+
+# ===================================
+# 📁 기타 정리용
+HELP.md
