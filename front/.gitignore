@@ -1,0 +1,49 @@
+# ===============================
+# 📦 Node / React / Vite Build
+# ===============================
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+*.log
+
+# ===============================
+# 🌐 환경변수 파일
+# ===============================
+.env
+.env.*   # 예: .env.local, .env.development 등
+
+# ===============================
+# 🧪 테스트 / Lint 캐시
+# ===============================
+coverage/
+*.test.*
+jest.config.*
+eslint.*
+.vitest/
+.vscode/
+!.vscode/extensions.json
+
+# ===============================
+# 🧰 Editor / OS 설정 파일
+# ===============================
+.DS_Store
+Thumbs.db
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===============================
+# 🐍 Python 관련 (fastapi_server 내부)
+# ===============================
+fastapi_server/venv/
+fastapi_server/.env
+fastapi_server/__pycache__/
+fastapi_server/*.pyc
+fastapi_server/*.pyo
+fastapi_server/*.pyd
+fastapi_server/*.sqlite3
