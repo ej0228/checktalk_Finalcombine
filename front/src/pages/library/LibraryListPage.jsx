@@ -89,7 +89,6 @@ const LibraryListPage = () => {
         }
       );
       console.log("records 응답 확인:", res.data.content);
-      // records.forEach((r) => console.log(r.id, r.isImportant)); ----> 중요도 표시 왜 삭제하죠?
       setRecords(Array.isArray(res.data.content) ? res.data.content : []);
       setTotalPages(res.data.totalPages);
       setTotalElements(res.data.totalElements); // 전체 분석 갯수
